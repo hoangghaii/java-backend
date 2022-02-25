@@ -17,19 +17,33 @@ public class Employee {
   @Column(name = "lastName")
   private String lastName;
 
+  @Column(name = "email")
+  private String email;
+
+  @Column(name = "password")
+  private String password;
+
   @Column(name = "role")
   private String role;
 
   Employee() {}
 
-  public Employee(String firstName, String lastName, String role) {
+  public Employee(
+      String firstName,
+      String lastName,
+      String email,
+      String password,
+      String role
+  ) {
     this.firstName = firstName;
     this.lastName = lastName;
+    this.email = email;
+    this.password = password;
     this.role = role;
   }
 
   public Long getId() {
-    return this.id;
+    return id;
   }
 
   public void setId(Long id) {
@@ -37,7 +51,7 @@ public class Employee {
   }
 
   public String getFirstName() {
-    return this.firstName;
+    return firstName;
   }
 
   public void setFirstName(String firstName) {
@@ -45,15 +59,31 @@ public class Employee {
   }
 
   public String getLastName() {
-    return this.lastName;
+    return lastName;
   }
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
   public String getRole() {
-    return this.role;
+    return role;
   }
 
   public void setRole(String role) {
@@ -63,23 +93,30 @@ public class Employee {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof  Employee)) return false;
+    if (!(o instanceof Employee)) return false;
     Employee employee = (Employee) o;
-    return Objects.equals(this.id, employee.id) &&
-        Objects.equals(this.firstName, employee.firstName) &&
-        Objects.equals(this.lastName, employee.lastName) &&
-        Objects.equals(this.role, employee.role);
+    return Objects.equals(id, employee.id) &&
+        Objects.equals(firstName, employee.firstName) &&
+        Objects.equals(lastName, employee.lastName) &&
+        Objects.equals(email, employee.email) &&
+        Objects.equals(password, employee.password) &&
+        Objects.equals(role, employee.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.id, this.firstName, this.lastName, this.role);
+    return Objects.hash(id, firstName, lastName, email, password, role);
   }
 
   @Override
   public String toString() {
-    return "Employee{" + "id=" + this.id + ", firstName='" + this.firstName + '\'' +
-        ", lastName='" + this.lastName + '\'' +
-        ", role='" + this.role + '\'' + '}';
+    return "Employee{" +
+        "id=" + id +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", email='" + email + '\'' +
+        ", password='" + password + '\'' +
+        ", role='" + role + '\'' +
+        '}';
   }
 }

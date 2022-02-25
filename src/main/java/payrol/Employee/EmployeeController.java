@@ -16,14 +16,12 @@ public class EmployeeController {
 
   private final EmployeeModelAssembler assembler;
 
-  EmployeeController(
-      EmployeeModelAssembler assembler
-  ) {
+  EmployeeController(EmployeeModelAssembler assembler) {
     this.assembler = assembler;
   }
 
   @Autowired
-  EmployeeRepository repository;
+  private EmployeeRepository repository;
 
   // Aggregate root
   // tag::get-aggregate-root[]
