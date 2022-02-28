@@ -8,7 +8,7 @@ public class JwtResponse {
   private String token;
 
   @Value("${demo.app.tokenPrefix}")
-  private String type;
+  private String type = "Bearer";
 
   private String refreshToken;
 
@@ -20,19 +20,15 @@ public class JwtResponse {
 
   private List<String> roles;
 
-  public String getToken() {
-    return token;
-  }
-
   public JwtResponse(
-      String token,
+      String accessToken,
       String refreshToken,
       Long id,
       String username,
       String email,
       List<String> roles
   ) {
-    this.token = token;
+    this.token = accessToken;
     this.refreshToken = refreshToken;
     this.id = id;
     this.username = username;
@@ -40,16 +36,12 @@ public class JwtResponse {
     this.roles = roles;
   }
 
-  public void setToken(String token) {
-    this.token = token;
+  public String getAccessToken() {
+    return token;
   }
 
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
+  public void setAccessToken(String accessToken) {
+    this.token = accessToken;
   }
 
   public String getRefreshToken() {
@@ -58,6 +50,14 @@ public class JwtResponse {
 
   public void setRefreshToken(String refreshToken) {
     this.refreshToken = refreshToken;
+  }
+
+  public String getTokenType() {
+    return type;
+  }
+
+  public void setTokenType(String tokenType) {
+    this.type = tokenType;
   }
 
   public Long getId() {

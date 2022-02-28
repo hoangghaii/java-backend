@@ -8,7 +8,7 @@ public class TokenRefreshResponse {
   private String refreshToken;
 
   @Value("${demo.app.tokenPrefix}")
-  private String tokenType;
+  private String tokenType = "Bearer";
 
   public TokenRefreshResponse(String accessToken, String refreshToken) {
     this.accessToken = accessToken;
