@@ -1,25 +1,25 @@
-package payrol.Order;
+package payrol.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
 public class Order {
-
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @Column(name = "description")
+  @NotBlank
   private String description;
 
-  @Column(name = "status")
-  private Status status;
+  @NotBlank
+  private EStatus status;
 
-  Order() {}
+  public Order() {}
 
-  public Order(String description, Status status) {
+  public Order(String description, EStatus status) {
     this.description = description;
     this.status = status;
   }
@@ -40,11 +40,11 @@ public class Order {
     this.description = description;
   }
 
-  public Status getStatus() {
+  public EStatus getStatus() {
     return status;
   }
 
-  public void setStatus(Status status) {
+  public void setStatus(EStatus status) {
     this.status = status;
   }
 

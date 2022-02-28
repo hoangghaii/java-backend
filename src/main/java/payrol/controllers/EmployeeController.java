@@ -1,10 +1,14 @@
-package payrol.Employee;
+package payrol.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import payrol.common.*;
+import payrol.assembler.EmployeeModelAssembler;
+import payrol.exception.NotFoundException;
+import payrol.models.EErrorType;
+import payrol.repository.EmployeeRepository;
+import payrol.models.Employee;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +30,7 @@ public class EmployeeController {
   // Aggregate root
   // tag::get-aggregate-root[]
   @GetMapping("/employees")
-  CollectionModel<EntityModel<Employee>> all() {
+  public CollectionModel<EntityModel<Employee>> all() {
 
     List<EntityModel<Employee>> employees = repository.findAll().stream()
         .map(assembler::toModel).collect(Collectors.toList());
@@ -45,9 +49,9 @@ public class EmployeeController {
 
   // Single item
   @GetMapping("/employees/{id}")
-  EntityModel<Employee> one(@PathVariable Long id){
+  public EntityModel<Employee> one(@PathVariable Long id){
     Employee employee = repository.findById(id)
-        .orElseThrow(() -> new NotFoundException(id, ErrorType.employee));
+        .orElseThrow(() -> new NotFoundException(id, EErrorType.employee));
 
     return assembler.toModel(employee);
   }

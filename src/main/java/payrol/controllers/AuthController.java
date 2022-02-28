@@ -8,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import payrol.Employee.Employee;
 import payrol.exception.TokenRefreshException;
 import payrol.models.ERole;
 import payrol.models.RefreshToken;

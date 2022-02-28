@@ -3,9 +3,7 @@ package payrol.security.jwt;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Value;
 import io.jsonwebtoken.*;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import payrol.Employee.Employee;
 import payrol.security.services.UserDetailsImpl;
 
 import java.util.Date;

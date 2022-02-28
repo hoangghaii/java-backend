@@ -1,8 +1,11 @@
-package payrol.Order;
+package payrol.assembler;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
+import payrol.controllers.OrderController;
+import payrol.models.EStatus;
+import payrol.models.Order;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -17,7 +20,7 @@ public class OrderModelAssembler implements RepresentationModelAssembler<
         linkTo(methodOn(OrderController.class).one(order.getId())).withSelfRel(),
         linkTo(methodOn(OrderController.class).all()).withRel("orders"));
 
-    if (order.getStatus() == Status.IN_PROGRESS) {
+    if (order.getStatus() == EStatus.IN_PROGRESS) {
       orderModel.add(linkTo(methodOn(OrderController.class).cancel(order.getId())).withRel("cancel"));
       orderModel.add(linkTo(methodOn(OrderController.class).complete(order.getId())).withRel("complete"));
     }

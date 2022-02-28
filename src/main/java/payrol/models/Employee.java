@@ -1,4 +1,4 @@
-package payrol.Employee;
+package payrol.models;
 
 import javax.persistence.*;
 import java.util.Objects;
