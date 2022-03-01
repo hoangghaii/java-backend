@@ -14,7 +14,7 @@ public class NotFoundAdvice {
   @ExceptionHandler(NotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
 
-  String notFoundHandler(NotFoundException ex){
+  String NotFoundHandler(NotFoundException ex){
     return ex.getMessage();
   }
 }
