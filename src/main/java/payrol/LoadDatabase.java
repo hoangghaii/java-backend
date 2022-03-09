@@ -5,11 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import payrol.models.Employee;
+import payrol.models.*;
 import payrol.repository.EmployeeRepository;
-import payrol.models.Order;
 import payrol.repository.OrderRepository;
-import payrol.models.EStatus;
 
 @Configuration
 public class LoadDatabase {
@@ -17,13 +15,25 @@ public class LoadDatabase {
 
   @Bean
   CommandLineRunner initDatabase(EmployeeRepository employeeRepository, OrderRepository orderRepository) {
-    return  args -> {
-      employeeRepository.save(new Employee("Nguyen","Hoang Hai","nhhai@gmail.com", "123", "ADMIN"));
-      employeeRepository.save(new Employee("Ngo", "Thi Ngan", "ntngan@gmail.com", "123", "USER"));
+    return args -> {
+      employeeRepository.save(Employee.builder()
+          .firstName("Nguyen")
+          .lastName("Hoang Hai")
+          .email("nhhai@gmail.com")
+          .password("123")
+          .role("ADMIN")
+          .build());
+      employeeRepository.save(Employee.builder()
+          .firstName("Ngo")
+          .lastName("Thi Ngan")
+          .email("ntngan@gmail.com")
+          .password("123")
+          .role("USER")
+          .build());
       employeeRepository.findAll().forEach(employee -> log.info("Preloading " + employee));
 
-      orderRepository.save(new Order("MacBook Pro", EStatus.COMPLETED));
-      orderRepository.save(new Order("iPhone", EStatus.IN_PROGRESS));
+      orderRepository.save(Order.builder().description("MacBook Pro").status(EStatus.COMPLETED).build());
+      orderRepository.save(Order.builder().description("iPhone").status(EStatus.IN_PROGRESS).build());
       orderRepository.findAll().forEach(order -> log.info("Preloaded " + order));
     };
   }

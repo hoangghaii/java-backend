@@ -1,17 +1,18 @@
 package payrol.security.services;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Service;
 import payrol.exception.TokenRefreshException;
 import payrol.models.RefreshToken;
 import payrol.repository.RefreshTokenRepository;
 import payrol.repository.UserRepository;
-
 
 import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class RefreshTokenService {
   @Value("${demo.app.jwtRefreshExpirationMs}")
   private Long refreshTokenDurationMs;
@@ -44,7 +45,7 @@ public class RefreshTokenService {
   }
 
   @Transactional
-  public int deleteByUserId(Long userId) {
-    return refreshTokenRepository.deleteByUser(userRepository.findById(userId).get());
+  public void deleteByUserId(Long userId) {
+    refreshTokenRepository.deleteByUser(userRepository.findById(userId).get());
   }
 }
