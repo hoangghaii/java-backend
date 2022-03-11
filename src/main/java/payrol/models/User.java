@@ -19,28 +19,28 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "email")
     })
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @NonNull
-    @Size(max = 20)
-    private String username;
+  @NonNull
+  @Size(max = 20)
+  private String username;
 
-    @NonNull
-    @Size(max = 50)
+  @NonNull
+  @Size(max = 50)
 
-    @Email
-    private String email;
+  @Email
+  private String email;
 
-    @NonNull
-    @Size(max = 120)
-    private String password;
+  @NonNull
+  @Size(max = 120)
+  private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_roles",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id")
+  )
+  private Set<Role> roles = new HashSet<>();
 }

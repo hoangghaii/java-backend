@@ -1,5 +1,7 @@
 package payrol.security.services;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +10,8 @@ import payrol.models.User;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
+@EqualsAndHashCode
 public class UserDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;
 
@@ -20,20 +24,6 @@ public class UserDetailsImpl implements UserDetails {
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
-
-  public UserDetailsImpl(
-      Long id,
-      String username,
-      String email,
-      String password,
-      Collection<? extends GrantedAuthority> authorities
-  ) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.password = password;
-    this.authorities = authorities;
-  }
 
   public static UserDetailsImpl build(User user) {
     List<GrantedAuthority> authorities = user.getRoles().stream()
@@ -89,22 +79,5 @@ public class UserDetailsImpl implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof UserDetailsImpl)) return false;
-    UserDetailsImpl that = (UserDetailsImpl) o;
-    return Objects.equals(id, that.id) &&
-        Objects.equals(username, that.username) &&
-        Objects.equals(email, that.email) &&
-        Objects.equals(password, that.password) &&
-        Objects.equals(authorities, that.authorities);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, username, email, password, authorities);
   }
 }

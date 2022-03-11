@@ -12,7 +12,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @Component
 public class EmployeeModelAssembler implements RepresentationModelAssembler<
     Employee,
-    EntityModel<Employee>>
+    EntityModel<Employee>
+    >
 {
   @Override
   public EntityModel<Employee> toModel(Employee employee) {

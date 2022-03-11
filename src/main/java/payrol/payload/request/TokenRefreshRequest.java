@@ -1,16 +1,12 @@
 package payrol.payload.request;
 
-import javax.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class TokenRefreshRequest {
-  @NotBlank
+  @NonNull
   private String refreshToken;
-
-  public String getRefreshToken() {
-    return refreshToken;
-  }
-
-  public void setRefreshToken(String refreshToken) {
-    this.refreshToken = refreshToken;
-  }
 }

@@ -1,6 +1,5 @@
 package payrol.exception;
 
-
 import payrol.models.EErrorType;
 
 public class NotFoundException extends RuntimeException {
